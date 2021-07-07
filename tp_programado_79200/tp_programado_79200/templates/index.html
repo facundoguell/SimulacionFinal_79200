@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<head>
+     <style type="text/css">
+        p{
+        font-family: "Verdana";
+        }
+
+     </style>
+
+</head>
+
+<div class="index-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <div class="jumbotron">
+        <h1 class="display-4">SIMULACION</h1>
+        <p class="lead">Final Simulacion Programado - 79200</p>
+        <div class="container">
+            <p align="justify" >
+                A la cafetería de la UTN entran personas con una distribución N(10’,6’) entre las 18:00 y las 20:00. El
+                60% entra para comprar algo, el 30 % viene a utilizar las mesas y el resto solamente esta de paso.<br>
+                <br>Para poder comprar deben comprar un ticket en la única caja de la cafetería, la que está atendida
+                por el dueño. Una vez que retiran el ticket, se dirigen hacia el costado izquierdo de la caja donde 2
+                empleados hacen la entrega de lo que figura en el ticket.<br> <br>Las personas que compran y quieren
+                quedarse, lo hacen si hay mesa libre, sino se van y se retiran una vez que terminan de consumir lo
+                que compraron.<br>
+                <br>Tiempo de compra de ticket: 20 segundos.
+                <br>Tiempo de entrega de pedido: exp(-)(50”)
+                <br>Tiempo de consumición de pedido: 5+-1 minutos
+                <br>Plantear una fórmula (cuyos datos se extraerían de vector de estado) para establecer el promedio de
+                permanencia de las personas en la cafetería.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

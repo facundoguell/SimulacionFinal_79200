@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Tp4{% endblock %}
+
+{% block content %}
+
+
+<head>
+     <style type="text/css">
+        .table-responsive {
+            height:200px;
+            overflow:scroll;
+        }
+        .mitabla thead{
+          position: sticky;
+          top: 0;
+          z-index: 2;
+        }
+        .mitabla thead>tr:nth-child(2) th {
+          top: 67px;
+        }
+
+     </style>
+
+</head>
+
+<div class="index-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Ejercicio 43</h1>
+    <p class="lead">Ejercicio 43 Final Simulacion</p>
+</div>
+
+{% if form %}
+
+    <div class="container">
+        <!-- Parametros de entrada -->
+            <form class="bg-light mr-5" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {% crispy form form.helper %}
+                <!-- Boton Simular -->
+                <div class="row justify-content-center mb-3">
+                    <input type="submit" class="btn btn-primary" value="Simular">
+                </div>
+            </form>
+    </div>
+
+
+{% else %}
+
+
+<div class="container mt-5">
+    <!-- Tabla de datos de entrada-->
+    <div class="index-header">
+        <h5>Datos de la simulacion</h5>
+    </div>
+    <div class="mt-3 text-center">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Horario de Simulacion</th>
+                    <th>Cantidad de personas que ingresaron al sistema</th>
+                    <th>Promedio de permanencia en la cafeteria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>18:00hs a 20:00hs</td>
+                    <td>{{Cantidadpersonas}}</td>
+                    <td>{{Promediopermanencia}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mt-5">
+
+    <div class="index-header">
+        <h5>Tabla de resultados de la simulacion</h5>
+    </div>
+    <div class="mt-3 text-center table-responsive">
+        <table class="table table-bordered table-striped ">
+            <thead>
+                <tr>
+                    <th colspan="3" class="table-success" ></th>
+                    <th class="table-primary" colspan="2">Caja</th>
+                    <th class="table-danger" colspan="4"> Cocina</th>
+                    <th class="table-success" colspan="2"> Mesas</th>
+                    <th class="table-info" colspan="3"> Estadisticas</th>
+
+                    {% for col in clientes %}
+                        <th class="table-info table-bordered" colspan="7">Cliente</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+
+                    <th>Evento</th>
+                    <th>Reloj</th>
+                    <th>Proxima llegada</th>
+
+                    <!-- Caja -->
+                    <th>Estado</th>
+                    <th>Cola</th>
+
+                    <!-- Cocina -->
+                    <th>Estado</th>
+                    <th>Cola</th>
+                    <th>Cocinero 1</th>
+                    <th>Cocinero 2</th>
+
+                    <!-- Mesas -->
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+
+                    <!-- Estadisticas -->
+
+                    <th>Cantidad Clientes Retirados</th>
+                    <th>Acu Tiempo Permanencia</th>
+                    <th>Prom Tiempo Permanencia</th>
+
+                    <!-- agregar for que agregue la cabecera de abajo por la cantidad de trabajos generados-->
+
+                    {% for col in clientes %}
+                        <th>ID</th>
+                        <th>Estado</th>
+                        <th>Minuto Llegada</th>
+                        <th>Tiempo fin cobro</th>
+                        <th>Tiempo fin preparacion</th>
+                        <th>Cocinero</th>
+                        <th>Tiempo fin mesa</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for col in vectorResultado %}
+                    <td>{{ col }}</td>
+                {% endfor %}
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+
+    <div class="index-header">
+        <h5>Tabla-simulacion 18:00hs a 20:00hs</h5>
+    </div>
+    <div class="mt-3 text-center">
+        <table class="table table-bordered table-hover mitabla">
+            <thead class="thead-dark table-bordered">
+                <tr>
+                    <th colspan="3" class="table-success" ></th>
+                    <th class="table-primary" colspan="2">Caja</th>
+                    <th class="table-danger" colspan="4"> Cocina</th>
+                    <th class="table-success" colspan="2"> Mesas</th>
+                    <th class="table-info" colspan="3"> Estadisticas</th>
+
+                    {% for col in clientes %}
+                        <th class="table-info table-bordered" colspan="7">Cliente</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+
+                    <th>Evento</th>
+                    <th>Reloj</th>
+                    <th>Proxima llegada</th>
+
+                    <!-- Caja -->
+                    <th>Estado</th>
+                    <th>Cola</th>
+
+                    <!-- Cocina -->
+                    <th>Estado</th>
+                    <th>Cola</th>
+                    <th>Cocinero 1</th>
+                    <th>Cocinero 2</th>
+
+                    <!-- Mesas -->
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+
+                    <!-- Estadisticas -->
+
+                    <th>Cantidad Clientes Retirados</th>
+                    <th>Acu Tiempo Permanencia</th>
+                    <th>Prom Tiempo Permanencia</th>
+
+                    <!-- agregar for que agregue la cabecera de abajo por la cantidad de trabajos generados-->
+
+                    {% for col in clientes %}
+                        <th>ID</th>
+                        <th>Estado</th>
+                        <th>Minuto Llegada</th>
+                        <th>Tiempo fin cobro</th>
+                        <th>Tiempo fin preparacion</th>
+                        <th>Cocinero</th>
+                        <th>Tiempo fin mesa</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in matrizResultado %}
+                    <tr>
+                        {% for registro in fila %}
+                            <td>{{ registro }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endif %}
+
+{% endblock %}
